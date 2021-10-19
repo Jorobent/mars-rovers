@@ -14,7 +14,7 @@ const Search = () => {
 	const [photosList, setPhotosList] = useState([]);
 
 	useEffect(() => {
-		alert(page)
+		// alert(page)
 		data?.photos && setPhotosList(prevPhotosList => !page ? [...prevPhotosList, ...data.photos] : data.photos);
 	}, [data, page]);
 
