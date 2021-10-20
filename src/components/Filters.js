@@ -1,11 +1,11 @@
 import React from 'react';
-import { VStack, Text, Input, Radio, RadioGroup, Button, ButtonGroup } from '@chakra-ui/react';
+import { VStack, Text } from '@chakra-ui/react';
 import CustomSelect from './CustomSelect';
 import { CURIOSITY_CAMERAS, SPIRIT_OPPORTUNITY_CAMERAS, ROVER_VERSIONS } from '../configs';
 import { useLocation, useHistory, useParams } from 'react-router';
 import DateFilter from './DateFilter'
 
-const Filters = ({}) => {
+const Filters = ({onSubmit}) => {
 	const { rover } = useParams();
 	const { search } = useLocation();
 	const history = useHistory();
@@ -22,15 +22,17 @@ const Filters = ({}) => {
 		}
 		params.set("page", 1); // return to page 1 for new searches
 		history.push({search: params.toString()})
+		onSubmit && onSubmit();
 	}
 	
 	const updateRoute = ({value}) => {
 		history.push(`/search/${value}`)
+		onSubmit && onSubmit();
 	}
 
 	return(
-		<VStack minW={250} p={2} spacing={5}>
-			<Text>Filter by:</Text>
+		<VStack minW={250} p={2} spacing={5} align="start">
+			<Text fontSize={["25px", null]}>Filter by:</Text>
 
 			<CustomSelect
 				type={"Rovers"}

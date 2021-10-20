@@ -1,5 +1,13 @@
 import React, {useRef, useState} from 'react';
-import { Stack, VStack, RadioGroup, Input, Radio, Button, Text } from '@chakra-ui/react';
+import { Stack, VStack, Input, Button, Text } from '@chakra-ui/react';
+
+const radioStyles = {
+	width: "20px",
+	height: "20px"
+}
+const labelStyles = {
+	fontSize: "12px"
+}
 
 const DateFilter = ({onDateApply}) => {
 	const [dateType, setDateType] = useState("earth_date");
@@ -10,7 +18,6 @@ const DateFilter = ({onDateApply}) => {
 	
 	const handleSearch = () => {
 		const dateValue = dateType === "earth_date" ? dateRef.current.value : solRef.current.value;
-		console.log(dateValue);
 		if(dateValue.trim() === '') {
 			alert("You need to add a value");
 		} else {
@@ -19,31 +26,34 @@ const DateFilter = ({onDateApply}) => {
 	}
 
 	const handleRadioChange = (e) => {
-		setDateType(e)
+		setDateType(e.target.value);
+		setTimeout(() => {
+			e.target.value === 'sol' ? solRef.current?.focus(): dateRef.current?.focus()
+		}, 1);
 	}
 
 	return (
-		<VStack spacing={2} m={10}>
+		<VStack p={2} spacing={2} m={40} align="start" justify="start">
 			
 			<Text> Select and filter by date </Text>
 			
-			<RadioGroup onChange={handleRadioChange} defaultValue={dateType}>
-				<Stack spacing={5} direction="row">
-					<Radio colorScheme="blue" value="sol">
-						by Sol
-					</Radio>
-					<Radio colorScheme="blue" value="earth_date">
-						by Date
-					</Radio>
-				</Stack>
-			</RadioGroup>
-
 			{dateType === "earth_date"
 				? <Input ref={dateRef} type="date" placeholder="Enter date" />
 				: <Input ref={solRef} type="num" placeholder="Enter Sol year"/>
 			}
+			
+			<Stack spacing={5} direction="row">
+				<VStack>
+					<input style={radioStyles} type="radio" id="sol" name={'date'} value="sol" onChange={handleRadioChange}/>
+					<label style={labelStyles} htmlFor="sol">By Sol</label>
+				</VStack>
+				<VStack>
+					<input style={radioStyles} type="radio" id="earth_date" name={'date'} value="earth_date" onChange={handleRadioChange}/>
+					<label style={labelStyles} htmlFor="earth_date">By Earth Date</label>
+				</VStack>
+			</Stack>
 
-			<Button onClick={handleSearch}>Search</Button>
+			<Button colorScheme="blue" onClick={handleSearch}>Apply date</Button>
 
 		</VStack>
 	)

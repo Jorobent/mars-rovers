@@ -16,7 +16,7 @@ function App() {
         <Flex justify="start" direction="column" grow={4}>
           <Header />
           <Switch>
-            <Route path="/">
+            <Route exact path="/">
               <Home />
             </Route>
             <Route path="/search/:rover">

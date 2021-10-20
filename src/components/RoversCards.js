@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Image } from "@chakra-ui/image";
 import { Link } from "react-router-dom";
-
-import { Spinner, Divider, Center, Badge, Skeleton } from "@chakra-ui/react"
-import { Box, Stack, Text, Heading, HStack } from "@chakra-ui/layout";
+import { Divider } from "@chakra-ui/react"
+import { Box, Stack, Heading } from "@chakra-ui/layout";
 import useFetch from '../hooks/useFetch';
 import Opportunity from '../images/Opportunity.jpg';
 import Spirit from '../images/Spirit.jpg';
@@ -19,14 +18,23 @@ const images = {
 
 const RoversCard = ({ rover }) => {
 	const url = `${NASA_API_URL}/manifests/${rover}/?api_key=${NASA_API_KEY}`;
-	const {data, loading, error} = useFetch({url});
+	const {data, loading} = useFetch({url});
 	
 	return (
-		<Box w={[260, 400]} m={2} rounded="20px" bgGradient="linear(to-r, teal.50, red.100)" overflow="hidden" cursor="pointer">
+		<Box 
+			w={[260, 400]}
+			m={2}
+			rounded="20px"
+			cursor="pointer"
+			boxShadow="2xl"
+			overflow="hidden"
+			transition="box-shadow .2s"
+			_hover={{
+				boxShadow: "md"
+			}}>
 			<Link to={`/search/${rover}/`}>
 				<Image w={"100%"} src={images[rover]} alt={rover} />
-			</Link>
-			<Heading color="black" align="center" as="h4" fontSize={"16px"} p={2}>{rover}</Heading>
+			<Heading align="center" as="h4" fontSize={"16px"} p={2}>{rover}</Heading>
 			<Stack p={2}>
 				<RoverCardData label={"Launch date"} value={data?.photo_manifest.launch_date} loading={loading}/>
 				<Divider/>
@@ -36,6 +44,7 @@ const RoversCard = ({ rover }) => {
 				<Divider/>
 				<RoverCardData label={"Total photos"} value={data?.photo_manifest.total_photos} loading={loading}/>
 			</Stack>
+			</Link>
 		</Box>
 	)
 }
