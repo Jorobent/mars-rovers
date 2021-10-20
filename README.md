@@ -1,19 +1,21 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Comentarios adicionales
+## Mars Rovers - southern code
+
+## Comentarios
 
 Se desarrollo usando react-router y chakra ui como principales herramientas.
 
-La pantalla principal consta de 3 cards con info sobre los 3 rovers pedidos, se hace una peticion a /`manifest/${rovername}` por cada uno y se completa la información.
+La pantalla principal consta de 3 cards con info sobre los 3 rovers pedidos, se hace una petición a /`manifest/${rovername}` por cada uno y se completa la información.
 
 En la sección de búsqueda, se hace una primera búsquedan por la pagina 1 y la fecha actual para el rover seleccionado. Si no hay resultados se muestra información sobre la busqueda realizada y la opción de ir hacia atrás.
 
-En los filtros, se aplican valores la url al seleccionar una opción de los selectores o al enviar el filtro por fechas (Fecha terrestre y solar).
+En los filtros, se aplican los valores a la url al seleccionar una opción de los selectores o al enviar el filtro por fechas (Fecha terrestre y solar).
 En mobile los filtros se muestran al presionar el botón "Filters".
 
-Tanto en las galerias mobile como desktop, al precionar una foto se podra ver en pantalla completa y realizar zoom.
+Tanto en las galerias mobile como desktop, al precionar una foto se podrá ver en pantalla completa y realizar zoom.
 
-Al precionar el boton "Load more" se realiza un pedido por la siguiente página de la busqueda actual.
+Al precionar el botón "Load more" se realiza un pedido por la siguiente página de la búsqueda actual.
 
 ## Available Scripts
 
