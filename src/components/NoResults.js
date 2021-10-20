@@ -1,5 +1,5 @@
 import React from 'react';
-import { Center, Text, Button, Stack, HStack, TagLabel, TagCloseButton, Tag } from '@chakra-ui/react';
+import { Center, Text, Button, Stack, HStack, TagLabel, Tag } from '@chakra-ui/react';
 import { useHistory } from 'react-router';
 import useSearch from '../hooks/useSearch';
 
@@ -9,7 +9,7 @@ const NoResults = () => {
 
 	return (
 		<Center h={600} w="100%" direction="column">
-			<Stack>
+			<Stack spacing="5">
 				<Text color="gray.500" fontSize={["20px", "30px"]} align="center"> No matches for this search </Text>
 
 				<HStack spacing={4}>
