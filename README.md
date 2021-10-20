@@ -15,7 +15,7 @@ En mobile los filtros se muestran al presionar el botón "Filters".
 
 Tanto en las galerias mobile como desktop, al precionar una foto se podrá ver en pantalla completa y realizar zoom.
 
-Al precionar el botón "Load more" se realiza un pedido por la siguiente página de la búsqueda actual.
+Al presionar el botón "Load more" se realiza un pedido por la siguiente página de la búsqueda actual.
 
 ## Available Scripts
 
