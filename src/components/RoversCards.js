@@ -22,9 +22,9 @@ const RoversCard = ({ rover }) => {
 	
 	return (
 		<Box 
-			w={[260, 400]}
+			w={260}
 			m={2}
-			rounded="20px"
+			rounded="10px"
 			cursor="pointer"
 			boxShadow="2xl"
 			overflow="hidden"
@@ -34,9 +34,9 @@ const RoversCard = ({ rover }) => {
 			}}>
 			<Link to={`/search/${rover}/`}>
 				<Image w={"100%"} src={images[rover]} alt={rover} />
-			<Heading align="center" as="h4" fontSize={"16px"} p={2}>{rover}</Heading>
-			<Stack p={2}>
-				<RoverCardData label={"Launch date"} value={data?.photo_manifest.launch_date} loading={loading}/>
+			<Heading align="left" as="h4" fontSize={"16px"} p={3}>{rover}</Heading>
+			<Stack p={3}>
+				<RoverCardData h={10} label={"Launch date"} value={data?.photo_manifest.launch_date} loading={loading}/>
 				<Divider/>
 				<RoverCardData label={"Landing date"} value={data?.photo_manifest.landing_date} loading={loading}/>
 				<Divider/>

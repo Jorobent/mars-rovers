@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import { Stack, VStack, Input, Button, Text } from '@chakra-ui/react';
 
 const radioStyles = {
@@ -11,15 +11,19 @@ const labelStyles = {
 
 const DateFilter = ({onDateApply}) => {
 	const [dateType, setDateType] = useState("earth_date");
-	
+	const [invalid, setInvalid] = useState("");
 	const solRef = useRef();
 	const dateRef = useRef();
 
+	useEffect(() => {
+		dateType === 'sol' ? solRef.current?.focus(): dateRef.current?.focus();
+	}, [dateType])
 	
 	const handleSearch = () => {
 		const dateValue = dateType === "earth_date" ? dateRef.current.value : solRef.current.value;
-		if(dateValue.trim() === '') {
-			alert("You need to add a value");
+		if(dateValue.trim() === '' || (dateType === "sol" && isNaN(dateValue))) {
+			setInvalid(dateType);
+			alert("You must enter a valid date");
 		} else {
 			onDateApply({date: dateValue, type: dateType});
 		}
@@ -27,9 +31,6 @@ const DateFilter = ({onDateApply}) => {
 
 	const handleRadioChange = (e) => {
 		setDateType(e.target.value);
-		setTimeout(() => {
-			e.target.value === 'sol' ? solRef.current?.focus(): dateRef.current?.focus()
-		}, 1);
 	}
 
 	return (
@@ -38,8 +39,8 @@ const DateFilter = ({onDateApply}) => {
 			<Text> Select and filter by date </Text>
 			
 			{dateType === "earth_date"
-				? <Input ref={dateRef} type="date" placeholder="Enter date" />
-				: <Input ref={solRef} type="num" placeholder="Enter Sol year"/>
+				? <Input isInvalid={invalid === dateType} ref={dateRef} type="date" placeholder="Enter date" />
+				: <Input isInvalid={invalid === dateType} ref={solRef} type="num" placeholder="Enter Sol year"/>
 			}
 			
 			<Stack spacing={5} direction="row">

@@ -8,7 +8,7 @@ import "react-awesome-lightbox/build/style.css";
 const PhotosList = ({photos, loading}) => {
 	const { search } = useLocation();
 	const history = useHistory();
-	const { isOpen, onOpen, onClose } = useDisclosure()
+	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [selectedPhoto, setSelectedPhoto] = useState(null);
 
 	const handleMorePhotos = () => {
@@ -33,7 +33,7 @@ const PhotosList = ({photos, loading}) => {
 					startIndex={photos.findIndex(({id}) => id === selectedPhoto)}
 					onClose={onClose}
 					allowZoom
-					/>
+				/>
 			}
 			<Wrap overflow={"hidden"} justify="center" align="center" spacing="12px" p={[null,"2"]} paddingBottom={["60px", "60px"]}>
 				{photos.map((photo, i) => {
